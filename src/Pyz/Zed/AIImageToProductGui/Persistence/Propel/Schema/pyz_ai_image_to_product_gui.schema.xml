@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed"
+          xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\AIImageToProductGui\Persistence"
+          package="src.Orm.Zed.AIImageToProductGui.Persistence">
+
+    <!-- TODO define your tables here -->
+
+</database>
