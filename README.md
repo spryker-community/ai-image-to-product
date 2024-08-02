@@ -67,3 +67,11 @@ caution:  if you run this command, all the data stored in your spryker docker vo
 - Custom Data Importer to Import product using image
 
 ### How to use:
+1. Login to backoffice and go to catalog > Product
+2. On products section, on top right corner **Gen Ai Product** button is there. click on it.
+![backoffice-1](https://github.com/user-attachments/assets/d753c92b-0477-4330-aba6-f016bf2ccf77)
+3.Fill the required information:
+![genai-2](https://github.com/user-attachments/assets/6d2176cc-3ac6-49cf-91ed-cab23fab1ee7)
+4. click on save which will create a new product and redirect you on product edit page.  If sku already exist, it will throw the error message that Sku already exist.
+![genai-4](https://github.com/user-attachments/assets/7cae01f4-17c5-42f4-ba35-871903033eea)
+
