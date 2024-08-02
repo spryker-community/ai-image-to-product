@@ -22,6 +22,7 @@ use Spryker\Zed\Store\Business\StoreFacade;
 use Spryker\Zed\Tax\Business\TaxFacade;
 use Symfony\Component\HttpFoundation\Request;
 
+
 /**
  * @method \Pyz\Zed\AIImageToProductGui\Business\AIImageToProductGuiFacadeInterface getFacade()
  * @method \Pyz\Zed\AIImageToProductGui\Communication\AIImageToProductGuiCommunicationFactory getFactory()
@@ -73,27 +74,16 @@ class IndexController extends AbstractController
                 $productImageSetTransfers->append($productImageSetTransfer);
                 $productAbstractTransfer->setImageSets($productImageSetTransfers);
 
-                // $pricesTransfer = new ArrayObject();
-                // $priceTransfer = new PriceProductTransfer();
-                // $moneyValueTransfer = new MoneyValueTransfer();
-                // $moneyValueTransfer->setGrossAmount($dataSet[AIImageToProductDataSetInterface::COLUMN_PRICE]);
-                // $currencyFacade = new CurrencyFacade();
-                // $currencyCode = $currencyFacade->getCurrent()->getCode();
-                // $currencyTransfer = $currencyFacade->fromIsoCode($currencyCode);
-                // $moneyValueTransfer->setCurrency($currencyTransfer);
-                // $moneyValueTransfer->setFkCurrency($currencyTransfer->getIdCurrency());
-                // $moneyValueTransfer->setFkStore($storeFacade->getCurrentStore()->getIdStore());
-                // $priceTransfer->setMoneyValue($moneyValueTransfer);
-                // $priceTypeTransfer = new PriceTypeTransfer();
-                // $priceTransfer->setPriceType($priceTypeTransfer->setName('Default'));
-                // $pricesTransfer->append($priceTransfer);
-                // $productAbstractTransfer->setPrices($pricesTransfer);
                 $localizedAttributes = new ArrayObject();
                 $localizedAttributesTransfer = new LocalizedAttributesTransfer();
                 $localeFacade = new LocaleFacade();
                 $localizedAttributesTransfer->setLocale($localeFacade->getCurrentLocale());
                 $localizedAttributesTransfer->setName($dataSet['title']);
                 $localizedAttributesTransfer->setDescription($dataSet['description']);
+                $localizedAttributesTransfer->setMetaTitle($dataSet['seo_title'] ?? '');
+                $localizedAttributesTransfer->setMetaDescription($dataSet['seo_description'] ?? '');
+                $localizedAttributesTransfer->setMetaKeywords($dataSet['seo_keywords'] ?? '');
+
                 $localizedAttributes->append($localizedAttributesTransfer);
                 $productAbstractTransfer->setLocalizedAttributes($localizedAttributes);
                 $productFacade = new ProductFacade();

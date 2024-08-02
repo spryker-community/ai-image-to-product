@@ -864,5 +864,5 @@ $config[TaxAppConstants::OAUTH_PROVIDER_NAME] = OauthAuth0Config::PROVIDER_NAME;
 $config[TaxAppConstants::OAUTH_GRANT_TYPE] = OauthAuth0Config::GRANT_TYPE_CLIENT_CREDENTIALS;
 $config[TaxAppConstants::OAUTH_OPTION_AUDIENCE] = 'aop-app';
 
-$config[ImageToTextConstants::GEMINI_HOST_ENDPOINT] = getenv('GEMINI_HOST_ENDPOINT') ? : 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
-$config[ImageToTextConstants::GEMINI_API_KEY] = getenv('GEMINI_API_KEY') ? : 'AIzaSyDzJfhNK6M6ilEICSCHF4lFGJkcV6kGmog';
+$config[ImageToTextConstants::GEMINI_HOST_ENDPOINT] = getenv('GEMINI_HOST_ENDPOINT');
+$config[ImageToTextConstants::GEMINI_API_KEY] = getenv('GEMINI_API_KEY');
