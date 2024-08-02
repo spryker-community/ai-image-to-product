@@ -1,2 +1,2 @@
-sku,price,stock,image_url
-Test23,100,50,https://picsum.photos/id/1/200/300
+sku,price,stock,tax_set,image_url
+Test23,100,50,Standard Taxes,https://picsum.photos/id/1/200/300
