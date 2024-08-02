@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\PriceTypeTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Generated\Shared\Transfer\ProductConcreteTransfer;
 use Generated\Shared\Transfer\StoreRelationTransfer;
+use Pyz\Client\ImageToText\ImageToTextClient;
 use Pyz\Zed\AIImageToProductDataImport\Business\DataSet\AIImageToProductDataSetInterface;
 use Spryker\Zed\Currency\Business\CurrencyFacade;
 use Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface;
@@ -32,7 +33,8 @@ class AIImageToProductWriterStep implements DataImportStepInterface
         try {
             $productAbstractTransfer = new ProductAbstractTransfer();
             $productAbstractTransfer->setSku($dataSet[AIImageToProductDataSetInterface::COLUMN_SKU]);
-            $productAbstractTransfer->setName("Import Test Product 2");
+            $productData = $this->fetchProductDataFromImg($dataSet[AIImageToProductDataSetInterface::COLUMN_IMAGE_URL]);
+            $productAbstractTransfer->setName($productData['title'] ?? '');
             $productAbstractTransfer->setIdTaxSet(
                 $this->getTaxSetIdByName($dataSet[AIImageToProductDataSetInterface::COLUMN_TAX_SET])
             );
@@ -59,8 +61,8 @@ class AIImageToProductWriterStep implements DataImportStepInterface
             $localizedAttributesTransfer = new LocalizedAttributesTransfer();
             $localeFacade = new LocaleFacade();
             $localizedAttributesTransfer->setLocale($localeFacade->getCurrentLocale());
-            $localizedAttributesTransfer->setName("Import Test Product 2");
-            $localizedAttributesTransfer->setDescription("Import Test Product 2");
+            $localizedAttributesTransfer->setName($productData['title'] ?? '');
+            $localizedAttributesTransfer->setDescription($productData['description'] ?? '');
             $localizedAttributes->append($localizedAttributesTransfer);
             $productAbstractTransfer->setLocalizedAttributes($localizedAttributes);
             $productFacade = new ProductFacade();
@@ -136,5 +138,17 @@ class AIImageToProductWriterStep implements DataImportStepInterface
         foreach ($productConcreteTransferArray as $productConcreteTransfer) {
             $productFacade->activateProductConcrete($productConcreteTransfer->getIdProductConcrete());
         }
+    }
+
+    /**
+     * @param string $imgUrl
+     *
+     * @return array
+     */
+    protected function fetchProductDataFromImg(string $imgUrl)
+    {
+        $imgToTextClient = new ImageToTextClient();
+
+        return $imgToTextClient->getNameDescriptionByUrl($imgUrl);
     }
 }
