@@ -1,9 +1,3 @@
-# Hackathon Project
-Created by team ***Nagarro Oryx***.
-
-## Short Project Description
-Imagine a world where product creation is as effortless as uploading a photo. Introducing AI-Powered Image-to-Product Data Generator that revolutionizes product onboarding, saving time, reducing errors, and boosting efficiency.
-
 
 ## Pre-requisite:
 1. To generate Gemini Api key [click here](https://aistudio.google.com/app/apikey)
@@ -39,6 +33,24 @@ $config[ImageToTextConstants::GEMINI_API_KEY] = getenv('GEMINI_API_KEY') ? : 'ap
 - data/import/common/**EU/ai_image_to_product.csv**
 - data/import/common/**ai_image_to_product_EU.yml**
 
+## Setup:
+
+1. clone the repository in your local
+	```php
+    git clone git@github.com:spryker-community/ai-image-to-product.git
+    ```
+2. clone docker sdk 
+    ```php
+     git clone https://github.com/spryker/docker-sdk.git --single-branch docker
+    ```
+3. bootstrap the project
+    ```php
+    docker/sdk bootstrap deploy.dev.yml
+    ```
+4. start the project
+ ```php
+        docker/sdk up
+ ```
 ### Capabilities:
 
 - Generate Product using Image only
