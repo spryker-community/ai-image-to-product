@@ -22,6 +22,7 @@ use Spryker\Zed\Gui\Communication\Plugin\Twig\AssetsPathTwigPlugin;
 use Spryker\Zed\Gui\Communication\Plugin\Twig\Buttons\Action\BackActionButtonTwigPlugin;
 use Spryker\Zed\Gui\Communication\Plugin\Twig\Buttons\Action\CreateActionButtonTwigPlugin;
 use Spryker\Zed\Gui\Communication\Plugin\Twig\Buttons\Action\EditActionButtonTwigPlugin;
+use Pyz\Zed\Gui\Communication\Plugin\Twig\Buttons\Action\GenAIActionButtonTwigPlugin;
 use Spryker\Zed\Gui\Communication\Plugin\Twig\Buttons\Action\RemoveActionButtonTwigPlugin;
 use Spryker\Zed\Gui\Communication\Plugin\Twig\Buttons\Action\ViewActionButtonTwigPlugin;
 use Spryker\Zed\Gui\Communication\Plugin\Twig\Buttons\ButtonGroupTwigPlugin;
@@ -89,6 +90,7 @@ class TwigDependencyProvider extends SprykerTwigDependencyProvider
             new ViewActionButtonTwigPlugin(),
             new EditActionButtonTwigPlugin(),
             new RemoveActionButtonTwigPlugin(),
+            new GenAIActionButtonTwigPlugin(),
             // table row buttons
             new EditTableButtonTwigPlugin(),
             new BackTableButtonTwigPlugin(),

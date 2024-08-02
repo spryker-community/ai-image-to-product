@@ -42,5 +42,14 @@ class AIImageToProductGuiCommunicationFactory extends AbstractCommunicationFacto
     public function createTaxSetQuery(): SpyTaxSetQuery
     {
         return SpyTaxSetQuery::create();
+
+    }
+
+     /**
+     * @return \Spryker\Zed\Product\Persistence\ProductQueryContainerInterface
+     */
+    public function getProductQueryContainer()
+    {
+        return $this->getProvidedDependency(AIImageToProductGuiDependencyProvider::QUERY_CONTAINER_PRODUCT);
     }
 }
