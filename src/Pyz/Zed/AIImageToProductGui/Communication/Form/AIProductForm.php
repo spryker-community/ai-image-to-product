@@ -7,7 +7,12 @@
 
 namespace Pyz\Zed\AIImageToProductGui\Communication\Form;
 
+use Generated\Shared\Transfer\PriceProductTransfer;
+use Spryker\Zed\Gui\Communication\Form\Type\Select2ComboBoxType;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
+use Spryker\Zed\ProductManagement\Communication\Form\Product\Price\ProductMoneyCollectionType;
+use Spryker\Zed\ProductManagement\Communication\Form\Product\Price\ProductMoneyType;
+use Spryker\Zed\ProductManagement\Communication\Form\Validator\Constraints\ProductPriceNotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -40,7 +45,32 @@ class AIProductForm extends AbstractType
     /**
      * @var string
      */
+    public const FIELD_PRICES = 'prices';
+
+    /**
+     * @var string
+     */
     public const VALIDATION_GROUP_UNIQUE_SKU = 'validation_group_unique_sku';
+
+    /**
+     * @var string
+     */
+    public const OPTION_LOCALE = 'locale';
+
+    /**
+     * @var string
+     */
+    public const OPTION_TAX_RATES = 'option_tax_rates';
+
+    /**
+     * @var string
+     */
+    public const VALIDATION_GROUP_PRICE_SOURCE = 'validation_group_price_source';
+
+    /**
+     * @var string
+     */
+    public const FIELD_TAX_RATE = 'tax_rate';
 
     /**
      * @var string
@@ -92,6 +122,7 @@ class AIProductForm extends AbstractType
         ]);
     }
 
+
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array<string, mixed> $options
@@ -102,7 +133,9 @@ class AIProductForm extends AbstractType
     {
         $this
             ->addSkuField($builder)
-            ->addImageField($builder);
+            ->addImageField($builder)
+            // ->addPriceForm($builder, $options)
+            ->addTaxRateField($builder, $options);
     }
 
     /**
@@ -168,6 +201,67 @@ class AIProductForm extends AbstractType
             ]);
 
         return $this;
+    }
+
+    /**
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array<string, mixed> $options
+     *
+     * @return $this
+     */
+    protected function addPriceForm(FormBuilderInterface $builder, array $options = [])
+    {
+        $builder->add(
+            static::FIELD_PRICES,
+            ProductMoneyCollectionType::class,
+            [
+                'entry_options' => [
+                    'data_class' => PriceProductTransfer::class,
+                ],
+                'entry_type' => ProductMoneyType::class,
+                'locale' => $options[static::OPTION_LOCALE] ?? 'en_US',
+                'constraints' => [
+                    new ProductPriceNotBlank([
+                        'groups' => [static::VALIDATION_GROUP_PRICE_SOURCE],
+                    ]),
+                ],
+            ],
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array<string, mixed> $options
+     *
+     * @return $this
+     */
+    protected function addTaxRateField(FormBuilderInterface $builder, array $options)
+    {
+        $taxOptions = $this->getTaxOptions();
+        $builder->add(static::FIELD_TAX_RATE, Select2ComboBoxType::class, [
+            'label' => 'Tax Set',
+            'required' => true,
+            'choices' => array_flip($taxOptions),
+            'placeholder' => '-',
+            'constraints' => [
+                new NotBlank(),
+            ],
+        ]);
+
+        return $this;
+    }
+
+    private function getTaxOptions()
+    {
+        $result = [];
+        $taxSets = $this->getFactory()->createTaxSetQuery()->find();
+        foreach ($taxSets as $taxSet) {
+            $result[$taxSet->getIdTaxSet()] = $taxSet->getName();
+        }
+
+        return $result;
     }
 
      /**

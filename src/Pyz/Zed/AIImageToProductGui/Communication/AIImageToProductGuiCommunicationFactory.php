@@ -7,6 +7,7 @@
 
 namespace Pyz\Zed\AIImageToProductGui\Communication;
 
+use Orm\Zed\Tax\Persistence\SpyTaxSetQuery;
 use Pyz\Zed\AIImageToProductGui\AIImageToProductGuiDependencyProvider;
 use Pyz\Zed\AIImageToProductGui\Communication\Form\AIProductForm;
 use Spryker\Zed\Kernel\Communication\AbstractCommunicationFactory;
@@ -33,6 +34,15 @@ class AIImageToProductGuiCommunicationFactory extends AbstractCommunicationFacto
     public function getImageToTextClient()
     {
         return $this->getProvidedDependency(AIImageToProductGuiDependencyProvider::IMAGE_TO_TEXT_CLIENT);
+    }
+
+    /**
+     * @return \Orm\Zed\Tax\Persistence\SpyTaxSetQuery
+     */
+    public function createTaxSetQuery(): SpyTaxSetQuery
+    {
+        return SpyTaxSetQuery::create();
+
     }
 
      /**

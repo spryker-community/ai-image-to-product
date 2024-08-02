@@ -20,6 +20,8 @@ use Spryker\Zed\Locale\Business\LocaleFacade;
 use Spryker\Zed\Product\Business\ProductFacade;
 use Spryker\Zed\Store\Business\StoreFacade;
 use Spryker\Zed\Tax\Business\TaxFacade;
+use Generated\Shared\Transfer\ProductImageTransfer;
+use Generated\Shared\Transfer\ProductImageSetTransfer;
 
 class AIImageToProductWriterStep implements DataImportStepInterface
 {
@@ -57,12 +59,30 @@ class AIImageToProductWriterStep implements DataImportStepInterface
             $priceTransfer->setPriceType($priceTypeTransfer->setName('Default'));
             $pricesTransfer->append($priceTransfer);
             $productAbstractTransfer->setPrices($pricesTransfer);
+
+            $productImageTransfer = (new ProductImageTransfer())
+            ->setExternalUrlSmall($dataSet[AIImageToProductDataSetInterface::COLUMN_IMAGE_URL])
+            ->setExternalUrlLarge($dataSet[AIImageToProductDataSetInterface::COLUMN_IMAGE_URL]);
+
+            $productImageSetTransfers = new ArrayObject(); // no existing set for new products
+            $productImageSetTransfer = (new ProductImageSetTransfer())
+                ->setName('main')
+                // ->setIdProductAbstract($this->productAbstractEntity->getIdProductAbstract())
+                ->addProductImage($productImageTransfer);
+
+            $productImageSetTransfers->append($productImageSetTransfer);
+            $productAbstractTransfer->setImageSets($productImageSetTransfers);
+
             $localizedAttributes = new ArrayObject();
             $localizedAttributesTransfer = new LocalizedAttributesTransfer();
             $localeFacade = new LocaleFacade();
             $localizedAttributesTransfer->setLocale($localeFacade->getCurrentLocale());
             $localizedAttributesTransfer->setName($productData['title'] ?? '');
             $localizedAttributesTransfer->setDescription($productData['description'] ?? '');
+            $localizedAttributesTransfer->setMetaTitle($productData['seo_title'] ?? '');
+            $localizedAttributesTransfer->setMetaDescription($productData['seo_description'] ?? '');
+            $localizedAttributesTransfer->setMetaKeywords($productData['seo_keywords'] ?? '');
+
             $localizedAttributes->append($localizedAttributesTransfer);
             $productAbstractTransfer->setLocalizedAttributes($localizedAttributes);
             $productFacade = new ProductFacade();

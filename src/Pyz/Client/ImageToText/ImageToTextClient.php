@@ -41,7 +41,7 @@ class ImageToTextClient extends AbstractClient implements ImageToTextClientInter
                             [
                                 'parts' => [
                                     [
-                                        'text' => 'As ecommerce domain expert, provide title, description for given image in json format. DO NOT INCLUDE BACKTICKS IN THE RESPONSE',
+                                        'text' => 'As ecommerce domain expert, provide title, description, seo_title, seo_keywords, seo_description for given image in json format. DO NOT INCLUDE BACKTICKS IN THE RESPONSE',
                                     ],
                                     [
                                         'inline_data' => [
