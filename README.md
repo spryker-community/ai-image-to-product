@@ -1,3 +1,8 @@
+# Hackathon Project
+Created by team ***Nagarro Oryx***.
+
+## Short Project Description
+Imagine a world where product creation is as effortless as uploading a photo. Introducing **AI-Powered Image-to-Product Data Generator** that revolutionizes product onboarding, saving time, reducing errors, and boosting efficiency.
 
 ## Pre-requisite:
 1. To generate Gemini Api key [click here](https://aistudio.google.com/app/apikey)
