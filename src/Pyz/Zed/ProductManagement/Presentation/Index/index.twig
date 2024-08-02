@@ -4,7 +4,7 @@
 {% block section_title %}{{ widget_title }}{% endblock %}
 
 {% block action %}
-    {{ createActionButton('/ai-image-to-product-gui', 'Create Product With AI' | trans) }}
+    {{ genAIActionButton('/ai-image-to-product-gui', 'Gen AI Product' | trans,) }}
     {{ createActionButton('/product-management/add', 'Create Product' | trans) }}
     {{ createActionButton('/product-management/add?type=bundle', 'Create Bundle Product' | trans) }}
 {% endblock %}

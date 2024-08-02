@@ -18,6 +18,11 @@ class AIImageToProductGuiDependencyProvider extends AbstractBundleDependencyProv
     public const IMAGE_TO_TEXT_CLIENT = 'IMAGE_TO_TEXT_CLIENT';
 
     /**
+     * @var string
+     */
+    public const QUERY_CONTAINER_PRODUCT = 'QUERY_CONTAINER_PRODUCT';
+
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
@@ -25,6 +30,11 @@ class AIImageToProductGuiDependencyProvider extends AbstractBundleDependencyProv
     public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = $this->addImageToTextClient($container);
+
+        $container->set(static::QUERY_CONTAINER_PRODUCT, function (Container $container) {
+            return $container->getLocator()->product()->queryContainer();
+        });
+
 
         return $container;
     }
