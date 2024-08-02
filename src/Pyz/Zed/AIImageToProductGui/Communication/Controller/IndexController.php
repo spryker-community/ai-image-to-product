@@ -28,6 +28,7 @@ class IndexController extends AbstractController
         ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dd("here");
             // $skuPreffix =$form
             $fileUrl = $form->get('image')->getData();
             $imgTextClient = $this->getFactory()->getImageToTextClient();

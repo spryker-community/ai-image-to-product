@@ -34,4 +34,12 @@ class AIImageToProductGuiCommunicationFactory extends AbstractCommunicationFacto
     {
         return $this->getProvidedDependency(AIImageToProductGuiDependencyProvider::IMAGE_TO_TEXT_CLIENT);
     }
+
+     /**
+     * @return \Spryker\Zed\Product\Persistence\ProductQueryContainerInterface
+     */
+    public function getProductQueryContainer()
+    {
+        return $this->getProvidedDependency(AIImageToProductGuiDependencyProvider::QUERY_CONTAINER_PRODUCT);
+    }
 }
