@@ -56,6 +56,11 @@ $config[ImageToTextConstants::GEMINI_API_KEY] = getenv('GEMINI_API_KEY') ? : 'ap
  ```php
         docker/sdk up
  ```
+if you come across any installation error, please run following command:
+```php
+        docker/sdk reset
+ ```
+caution:  if you run this command, all the data stored in your spryker docker volumes will be destroyed. 
 ### Capabilities:
 
 - Generate Product using Image only
