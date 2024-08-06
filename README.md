@@ -4,6 +4,14 @@ Created by team ***Nagarro Oryx***.
 ## Short Project Description
 Imagine a world where product creation is as effortless as uploading a photo. Introducing **AI-Powered Image-to-Product Data Generator** that revolutionizes product onboarding, saving time, reducing errors, and boosting efficiency.
 
+## 📹 Team Demo
+Team Nagarro Oryx presented this demo at the conclusion of the Nagarro Hackathon on Augsut 2nd, 2024:
+
+[![Nagarro Hackathon: Demo Team #1: Nagarro Oryx](https://img.youtube.com/vi/8YcPl5hjV2Y/0.jpg)](https://www.youtube.com/watch?v=8YcPl5hjV2Y)
+
+[View other team demo's on our YouTube Playlist](https://www.youtube.com/playlist?list=PLJooqCSo73SiCupw9Xtj8-6vUERAxpdk_)
+
+
 ## Pre-requisite:
 1. To generate Gemini Api key [click here](https://aistudio.google.com/app/apikey)
 2. Setup env variable: 
