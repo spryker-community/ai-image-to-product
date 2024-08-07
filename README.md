@@ -1,6 +1,8 @@
 # Hackathon Project
 Created by team ***Nagarro Oryx***.
 
+🏆 With this project, team ***Nagarro Oryx*** WON the 1st prize in the August 2024 Hackathon! 🏆
+
 ## Short Project Description
 Imagine a world where product creation is as effortless as uploading a photo. Introducing **AI-Powered Image-to-Product Data Generator** that revolutionizes product onboarding, saving time, reducing errors, and boosting efficiency.
 
